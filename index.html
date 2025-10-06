@@ -39,36 +39,42 @@
   ======================================================= -->
 
   <style>
-  .center
-  {
-  border : 25px solid dark;
-  padding: 10px; 
-  margin: auto;
-  float: left;
-  display: flex;
-  flex-direction: column;
-  }
+  /* ... senin mevcut stillerin ... */
 
-  .p
-  {
-   word-wrap:break-word;
+  /* Sadece portfolyo resimleri büyüsün */
+  .portfolio-container img:hover {
+    -ms-transform: scale(1.06);
+    -webkit-transform: scale(1.06);
+    transform: scale(1.06);
+    transition: transform .2s ease;
   }
+  /* Eski global img:hover kuralını kaldır ya da yorum satırı yap */
+  /* img:hover { transform: scale(2); } */
 
-  img:hover 
-  {
- -ms-transform: scale(2); /* IE 9 */
- -webkit-transform: scale(2); /* Safari 3-8 */
-  transform: scale(2);
+  /* HERO görsel + hotspot’lar */
+  .hero { position: relative; max-width: 1400px; margin: 0 auto; }
+  .hero-wrap { position: relative; width: 100%; }
+  .hero-img { display:block; width:100%; height:auto; }
+
+  .hotspot {
+    position:absolute; display:block;
+    outline:none;
+    /* tıklanabilir alanı görmeden ayarlamak için geçici kenarlık:
+       ayarı bitince border'ı silebilirsin */
+    /* border:1px dashed rgba(255,255,255,.25); */
+    border-radius:10px;
+    z-index:2;
   }
-  
-  .content
-  {
-      width: 50%;
-      height: 100%;
-      position: absolute;
-      top: 0;
+  .hotspot:focus-visible { box-shadow:0 0 0 3px rgba(255,255,255,.85); }
+
+  /* Yüzdeler: kendi PNG’ne göre ufak oyna */
+  .hotspot.yes { left:34%; top:72%; width:17%; height:12%; }
+  .hotspot.no  { left:53%; top:72%; width:17%; height:12%; }
+
+  @media (max-width: 576px){
+    .hotspot.yes, .hotspot.no { height:14%; }
   }
-  </style>
+</style>
 </head>
 
 <body>
@@ -100,14 +106,29 @@
 
   <!-- start section header -->
   <div id="header" class="home">
+  <div class="container">
+    <div class="hero">
+      <div class="hero-wrap">
+        <!-- Arkaplandaki YES/NO içeren görsel -->
+        <img src="images/game-over-hero.png" alt="Game Over" class="hero-img">
 
-    <div class="container">
-      <div class="header-content">
-        <h1>AKIN YOLCU</h1>
-        <p style ="background-color:black;">Hello everyone, my name is Akin Yolcu.I am 22 years old and I originate from Turkey.This is my portfolio.You can find some informations about me and my own works.Thank you so much for everything.</p>
+        <!-- Tıklanabilir alanlar -->
+        <a class="hotspot yes" href="#portfolio" aria-label="Go to Portfolio" title="YES"></a>
+        <a class="hotspot no"  href="#about"     aria-label="Go to About"     title="NO"></a>
       </div>
     </div>
+
+    <!-- İstersen metni görselin altına bırak -->
+    <div class="header-content" style="margin-top: 18px;">
+      <h1>AKIN YOLCU</h1>
+      <p style="background-color:black;">
+        Hello everyone, my name is Akin Yolcu. I am 22 years old and I originate from Turkey.
+        This is my portfolio. You can find some informations about me and my own works.
+        Thank you so much for everything.
+      </p>
+    </div>
   </div>
+</div>
   <!-- End section header -->
 
 
@@ -334,6 +355,7 @@ These are some of my game jam projects. You can also find other game jam activit
 </body>
 
 </html>
+
 
 
 
